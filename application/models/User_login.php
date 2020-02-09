@@ -28,8 +28,9 @@ class User_login extends CI_Model {
 			$query = $this->db->select("*")->where($data)->from($this->table)->get();
 			if($query)
 			{
+				//true
 				return true;
-				
+				 
 			}else
 			{
 				return false;
