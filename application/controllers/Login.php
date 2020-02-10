@@ -17,6 +17,9 @@ class Login extends CI_Controller {
 
 		// this Helper created by manuel and you can change some methods in Helper
 		$this->load->helper("Captcha_code");
+
+		// we included login model
+		$this->load->model("login_model");
 	}
 
 	// this is login page
@@ -42,8 +45,8 @@ class Login extends CI_Controller {
 		// here we check which came isset forms
 		$this->load->library('form_validation');
 
-		// check username
-		$this->form_validation->set_rules('username', 'Username', 'required');
+		// check email
+		$this->form_validation->set_rules('email', 'Email', 'required');
 
 		// check password
 		$this->form_validation->set_rules('password', 'Password', 'required');
@@ -57,7 +60,11 @@ class Login extends CI_Controller {
 			// check captcha is true
 			if($this->session->userdata("captcha_code") == $this->input->post("captcha_code"))
 			{
-
+				$data['email'] = $this->input->post("email");
+				$data['password'] = md5($this->input->post("password"));
+				
+				
+				$this->login_model->setUser($data);
 
 			}else
 			{

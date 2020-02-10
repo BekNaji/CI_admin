@@ -57,8 +57,8 @@
 							
 							<div class="control-group">
 								<div class="controls row-fluid">
-									<span class="text-error"><?php echo form_error("username"); ?></span>
-									<input value="<?php echo set_value('username'); ?>" name="username" class="span12" type="text" placeholder="Username">
+									<span class="text-error"><?php echo form_error("email"); ?></span>
+									<input value="<?php echo set_value('email'); ?>" name="email" class="span12" type="text" placeholder="Email">
 								</div>
 							</div>
 							<div class="control-group">

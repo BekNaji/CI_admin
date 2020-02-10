@@ -1,7 +1,7 @@
 <?php 
 
 
-// this method  create array to Captcha. 
+// this method  create necessary array to Captcha. 
 function cap_code()
 {
 	$vals = array(

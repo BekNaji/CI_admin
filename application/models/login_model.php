@@ -3,38 +3,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login_model extends CI_Model {
 
-	
+	public $table = "users";
+
 	public function __construct()
 	{
 		parent::__construct();
 		
 	}
 
-	public function sessioncontrol($user="")
+	public function setUser($data)
 	{
-		if(!isset($user))
+		if($data != "")
 		{
-			header("Location:".base_url("login"));
+			$value['email'] = $data['email'];
+			$value['password'] = $data['password'];
+
+			// we will get datas from db 
+			$query = $this->db->select("*")->where($value)->from($this->table)->get();
+			
+			// if query is true  
+			if($query->num_rows()>0)
+			{
+				if($data['cookie_key'] != "")
+				{
+
+				}else
+				{
+
+				}
+				
+
+			}else
+			{
+				redirect();
+			}
 		}
 	}
 
-	public function usercontrol($data,$table)
-	{
-		if(!empty($data))
-		{
-			$query = $this->db->where($data)->from($table)->get();
-			if($query->num_rows()>0)
-			{
-				$this->session->set_userdata("user",$query->row()->user_email);
-				header("Location:".base_url("home"));
-			}
-			else
-			{
-				header("Location:".base_url("login/index/fielduser"));
-			}
-		}else
-		{
-			header("Location:".base_url("login/index/freearea"));
-		}
-	}
+
 }
