@@ -24,18 +24,41 @@ class Login_model extends CI_Model {
 			// if query is true  
 			if($query->num_rows()>0)
 			{
+				$this->session->set_userdata("email",$value['email']);
+				echo $data['cookie_key'];
 				if($data['cookie_key'] != "")
 				{
+					$cookie['name'] = "email";
+					$cookie['value'] = $value['email'];
+					$cookie['expire'] = 60; // 10 days - we will keep cookie
 
-				}else
-				{
-
+					set_cookie($cookie);
 				}
+
+
+				redirect(base_url("admin/home/index/entered"));
 				
 
 			}else
 			{
-				redirect();
+				redirect(base_url('login/index/field'));
+			}
+		}
+	}
+
+
+	public function registerUser($data)
+	{
+		if($data != "")
+		{
+			$query = $this->db->insert($this->table,$data);
+			if($query)
+			{
+				echo "Kaydiniz Alınmıştır";
+				return true;
+			}else
+			{
+				return false;
 			}
 		}
 	}

@@ -19,7 +19,7 @@
 					<i class="icon-reorder shaded"></i>
 				</a>
 
-			  	<a class="brand" href="<?php base_url() ?>">
+			  	<a class="brand" href="<?php echo base_url() ?>">
 			  		{logoname}
 			  	</a>
 
@@ -27,8 +27,8 @@
 				
 					<ul class="nav pull-right">
 
-						<li><a href="<?php echo base_url('login/register') ?>">
-							Register
+						<li><a href="<?php echo base_url('login') ?>">
+							Login
 						</a></li>
 
 						
@@ -49,12 +49,18 @@
 			<div class="row">
 				<div class="module module-login span4 offset4">
 					<form class="form-vertical" method="POST" 
-					action="<?php echo base_url('login/logincontrol') ?>">
+					action="<?php echo base_url('login/registercontrol') ?>">
 						<div class="module-head">
-							<h3>Login</h3>
+							<h3>Register</h3>
 						</div>
 						<div class="module-body">
 							
+							<div class="control-group">
+								<div class="controls row-fluid">
+									<span class="text-error"><?php echo form_error("name"); ?></span>
+									<input value="<?php echo set_value('name'); ?>" name="name" class="span12" type="text" placeholder="Ful Name">
+								</div>
+							</div>
 							<div class="control-group">
 								<div class="controls row-fluid">
 									<span class="text-error"><?php echo form_error("email"); ?></span>
@@ -85,10 +91,8 @@
 						<div class="module-foot">
 							<div class="control-group">
 								<div class="controls clearfix">
-									<button type="submit" class="btn btn-primary pull-right">Login</button>
-									<label class="checkbox">
-										<input name="cookie_key" type="checkbox"> Remember me
-									</label>
+									<button type="submit" class="btn btn-primary pull-right">Apply</button>
+									
 								</div>
 							</div>
 						</div>

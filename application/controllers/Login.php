@@ -3,12 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
+	public $logoname = "Your Logo";
+
 	public function __construct()
 	{
 		parent::__construct();
 
-		// here we got  necessary models
-
+		
 		// this Helper created by CI and it already Helper
 		$this->load->helper('captcha');
 
@@ -16,15 +17,18 @@ class Login extends CI_Controller {
 		$this->load->library('parser');
 
 		// this Helper created by manuel and you can change some methods in Helper
-		$this->load->helper("Captcha_code");
+		$this->load->helper("code");
 
 		// we included login model
 		$this->load->model("login_model");
 	}
 
+	
+
 	// this is login page
-	public function index()
+	public function index($id ="")
 	{
+		
 		// here we created captcha for security
 		$vals = cap_code();
 		$captcha = create_captcha($vals);
@@ -33,15 +37,36 @@ class Login extends CI_Controller {
 		// here we created stdClass for send values to other pages
 		$data = new stdClass();
 		$data->captcha = $captcha;
+		$data->title   = "Login";
+		$data->logoname = $this->logoname;
 		
 		// here we called view login page
 		$this->parser->parse('login',$data);
+	}
+
+	public function register($id ="")
+	{
+		
+		// here we created captcha for security
+		$vals = cap_code();
+		$captcha = create_captcha($vals);
+		$this->session->set_userdata("captcha_code",$captcha["word"]);
+
+		// here we created stdClass for send values to other pages
+		$data = new stdClass();
+		$data->captcha = $captcha;
+		$data->title   = "Register";
+		$data->logoname = $this->logoname;
+		
+		// here we called view login page
+		$this->parser->parse('register',$data);
 	}
 
 
 	// this is login control page
 	public function loginControl()
 	{
+		
 		// here we check which came isset forms
 		$this->load->library('form_validation');
 
@@ -61,9 +86,13 @@ class Login extends CI_Controller {
 			if($this->session->userdata("captcha_code") == $this->input->post("captcha_code"))
 			{
 				$data['email'] = $this->input->post("email");
-				$data['password'] = md5($this->input->post("password"));
-				
-				
+				$data['password'] = mykey($this->input->post("password"));
+				$data['cookie_key'];
+				if($this->input->post('cookie_key') != "")
+				{
+					$data['cookie_key'] = $this->input->post('cookie_key');
+				}
+		
 				$this->login_model->setUser($data);
 
 			}else
@@ -83,7 +112,7 @@ class Login extends CI_Controller {
 			$data['captcha'] = $captcha;
 
 			// load login page and send $data to this page
-			$this->load->view("login",$data);
+			$this->parser->parse("login",$data);
 			}
 
 		}else
@@ -108,4 +137,91 @@ class Login extends CI_Controller {
 		
 	
 	}
+
+	// this is register control page
+		public function registerControl()
+	{
+		
+		// here we check which came isset forms
+		$this->load->library('form_validation');
+
+		// check Name
+		$this->form_validation->set_rules('name', 'Name', 'required');
+
+		// check email
+		$this->form_validation->set_rules('email', 'Email', 'required');
+
+		// check password
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		//check captcha
+		$this->form_validation->set_rules('captcha_code', 'Captcha', 'required');
+
+		// if this validation will true 
+		if($this->form_validation->run() == TRUE)
+		{
+			// check captcha is true
+			if($this->session->userdata("captcha_code") == $this->input->post("captcha_code"))
+			{
+				// we kept of input var
+				$data['name'] = $this->input->post('name');
+				$data['email'] = $this->input->post('email');
+
+				//this is value who will be user. Admin or User
+				$data['who'] = "User";
+
+				// here we used func that we made helper/code_helper
+				$data['password'] = mykey($this->input->post('password'));
+
+				// here we got register date. It will need in feature
+				$data['created_at'] = date("d/m/Y - H:m:s");
+
+				// here we call register func that we made. model/Login_model
+				$this->login_model->registerUser($data);
+
+
+			}else
+			{
+			
+			// this method is create captcha array  helper/code_helper
+			$vals = cap_code(); 
+
+			//create captcha
+			$captcha = create_captcha($vals); 
+			
+			//this session need leter thats why created
+			$this->session->set_userdata("captcha_code",$captcha["word"]);
+
+			// this varibiles we will use on Login.php
+			$data['captcha_code_error'] =  "The Captcha Code field is wrong.";
+			$data['captcha'] = $captcha;
+
+			// load login page and send $data to this page
+			$this->load->view("login/register",$data);
+			}
+
+		}else
+		{
+
+			// this method is create captcha array
+			$vals = cap_code();
+
+			//create captcha
+			$captcha = create_captcha($vals);
+
+			//this session need leter thats why created
+			$this->session->set_userdata("captcha_code",$captcha["word"]);
+
+			// this varibiles we will use on Login.php
+			$data['form_error'] =  validation_errors();
+			$data['captcha'] = $captcha;
+
+			// load login page and send $data to this page
+			$this->load->view("login/register",$data);
+		}
+		
+	
+	}
+
+
 }

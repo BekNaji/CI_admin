@@ -8,6 +8,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_login extends CI_Model {
 
+	public function __construct()
+	{
+		parent::__construct();
+
+
+	}
+
 
 	//This is user Table name
 	private $table = "users";
@@ -15,34 +22,53 @@ class User_login extends CI_Model {
 	//This method is controlling user
 	public function isLoggin()
 	{
+		 if (get_cookie("email") != "") 
+		 {
+			//we have to got which session isset and we defined to variable
+			
+			$data['email'] = get_cookie("email");
+
+		 	//here we are controlling that isset sessions value from database
+			$query = $this->db->select("*")->where($data)->from($this->table)->get();
+			if($query->num_rows > 0)
+			{
+				
+		 		return 1;
+				 
+		 	}else
+		 	{
+
+		 		return 0;
+		 	}
+			
+		 }
 		//here we are controlling do isset sessions user and pass
-		if($this->session->userdata("user") != "" and $this->session->userdata("pass") != "")
+		if($this->session->userdata("email") != "")
 		{
 			//we have to got which session isset and we defined to variable
-			$data = new stdClass();
-			$data->user = $this->session->userdata("user");
-			$data->pass = $this->session->userdata("pass");
-			$data->key  = $this->session->userdata("key");
-
+			
+			$data['email'] = $this->session->userdata("email");
+			
+			
 			//here we are controlling that isset sessions value from database
 			$query = $this->db->select("*")->where($data)->from($this->table)->get();
 			if($query)
 			{
 				
-				return true;
+				return 1;
 				 
 			}else
 			{
 
-				return false;
+				return 0;
 			}
 
+		}else
+		{
+			return 0 ;
 		}
 		
-		if(!$query)
-		{
-			
-		}
+		
 	}
 
 }

@@ -20,6 +20,9 @@ class Home extends CI_Controller {
 		 	die();
 		}
 
+		echo "Cookie = ".get_cookie("email");
+		echo "<hr>";
+		echo "Session = ".$this->session->userdata("email");
 		// we will use this parser model
 		$this->load->library('parser');
 	}

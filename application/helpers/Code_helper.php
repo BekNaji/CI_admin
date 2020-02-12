@@ -5,6 +5,7 @@
 function cap_code()
 {
 	$vals = array(
+        'word'          => rand(11111,99999),
         'img_path'      => './assets/captcha_folder/',
         'img_url'       => base_url('assets/captcha_folder/'),
         'font_path'     => './assets/fonts/Dephiana',
@@ -26,5 +27,12 @@ function cap_code()
 		);
 
 	return $vals;
+}
+
+// here we made our key like md5
+function mykey($data)
+{
+        $m = md5($data);
+        return md5($m);
 }
 
