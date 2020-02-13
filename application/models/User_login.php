@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /* 
-	This class Help to us about session and Coocies 
+	This class Help to us about session and CooKies 
 
 */
 
@@ -42,7 +42,7 @@ class User_login extends CI_Model {
 		 	}
 			
 		 }
-		//here we are controlling do isset sessions user and pass
+		//here we are controlling  sessions user and pass
 		if($this->session->userdata("email") != "")
 		{
 			//we have to got which session isset and we defined to variable

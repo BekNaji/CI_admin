@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
-	public $website = "NBM: ";
+	public $logoname = "Your Logo";
 	private $table = "users";
 
 	public function __construct()
@@ -20,9 +20,7 @@ class Home extends CI_Controller {
 		 	die();
 		}
 
-		echo "Cookie = ".get_cookie("email");
-		echo "<hr>";
-		echo "Session = ".$this->session->userdata("email");
+		
 		// we will use this parser model
 		$this->load->library('parser');
 	}
@@ -38,12 +36,13 @@ class Home extends CI_Controller {
 		}
 
 		$data = new stdClass();
+		$data->logoname = $this->logoname;
 		$data->title = "Home Page";
 		$data->text  = "Hello World";
 		$data->user  = "Bekzod";
 		$data->age   = 22;
 
-		echo $this->parser->parse("admin/home",$data,true);
+		$this->parser->parse("admin/home",$data);
 
 
 	}

@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
+
+	// LOGO NAME
 	public $logoname = "Your Logo";
 
 	public function __construct()
@@ -40,10 +42,12 @@ class Login extends CI_Controller {
 		$data->title   = "Login";
 		$data->logoname = $this->logoname;
 		
-		// here we called view login page
+		// here we called login page
 		$this->parser->parse('login',$data);
 	}
 
+
+	// this is register page
 	public function register($id ="")
 	{
 		
@@ -67,7 +71,7 @@ class Login extends CI_Controller {
 	public function loginControl()
 	{
 		
-		// here we check which came isset forms
+		// here we check which came isset forms with this funtion
 		$this->load->library('form_validation');
 
 		// check email
@@ -88,16 +92,22 @@ class Login extends CI_Controller {
 				$data['email'] = $this->input->post("email");
 				$data['password'] = mykey($this->input->post("password"));
 				$data['cookie_key'];
+
+				// here if cookie checked 
 				if($this->input->post('cookie_key') != "")
-				{
+				{	
+					// we defined  value of cookie to variable
 					$data['cookie_key'] = $this->input->post('cookie_key');
 				}
-		
+				
+				// here we called setUser function. path> login_model
 				$this->login_model->setUser($data);
 
 			}else
 			{
 			
+			// If the captcha values are wrong, the following codes will work
+
 			// this method is create captcha array
 			$vals = cap_code(); 
 
@@ -117,6 +127,8 @@ class Login extends CI_Controller {
 
 		}else
 		{
+
+			// If the incoming values are wrong, the following codes will work
 
 			// this method is create captcha array
 			$vals = cap_code();
