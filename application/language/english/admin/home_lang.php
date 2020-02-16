@@ -41,3 +41,25 @@ $lang['user'] = "User";
 $lang['user_website'] = "Website";
 $lang['user_address'] = "Address";
 $lang['user_picture'] = "Your Picture";
+$lang['language'] = "Language";
+$lang['english'] = "English";
+$lang['turkish'] = "Türkçe";
+
+
+//alerts
+// alerts
+$lang['updated'] = "Updated";
+$lang['unupdated'] = "Update Failed";
+$lang['unupdated_text'] = "Please try again! If it does not, inform the IT manager!";
+
+$lang['saved'] = "Saved";
+$lang['unsaved'] = "Could not Save!";
+$lang['addunsuccess_text'] = "Please try again! If it does not, inform the IT manager!";
+
+$lang['erroruser'] = "Email or Password is wrong!";
+$lang['free'] = "Please do not leave any space!";
+$lang['has'] = "The same registration is available in the database!";
+$lang['unenter'] = "You're Not Authorized! ATTENTION";
+$lang['unenter_text'] = "If you continue to enter the unauthorized page, YOUR LOGIN WILL BE BLOCKED!";
+
+$lang['deleted'] = "Deleted !";

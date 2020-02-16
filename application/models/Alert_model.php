@@ -71,7 +71,6 @@ class Alert_model extends CI_Model {
 		}
 
 		return $message = '<div class="'.$alert.'">
-				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				<strong>'.$subject.'</strong>'.@$text.'
 			</div>';
 	}

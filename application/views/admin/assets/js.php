@@ -20,7 +20,7 @@
     <script src="<?php echo base_url('assets') ?>/vendors/Flot/jquery.flot.js"></script>
     <script src="<?php echo base_url('assets') ?>/vendors/Flot/jquery.flot.pie.js"></script>
     <script src="<?php echo base_url('assets') ?>/vendors/Flot/jquery.flot.time.js"></script>
-    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="<?php echo base_url('assets') ?>/vendors/Flot/jquery.flot.stack.js"></script>
     <script src="<?php echo base_url('assets') ?>/vendors/Flot/jquery.flot.resize.js"></script>
     <!-- Flot plugins -->
     <script src="<?php echo base_url('assets') ?>/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>

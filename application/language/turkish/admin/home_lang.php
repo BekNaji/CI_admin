@@ -14,6 +14,8 @@ $lang['on'] = "Açık";
 $lang['off'] = "Kapalı";
 
 $lang['welcome'] = "Hoş geldiniz";
+$lang['english'] = "English";
+$lang['turkish'] = "Türkçe";
 
 
 // generel form 
@@ -22,6 +24,7 @@ $lang['company_address'] = "Şirket Adresı";
 $lang['company_website'] = "Şirket Websitesı";
 $lang['registration'] = "Herkes Kayıt olabilir mi?";
 $lang['logo_img'] = "Logo Resmi";
+$lang['language'] = "Dil";
 
 
 // profil form

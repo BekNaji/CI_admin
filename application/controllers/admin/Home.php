@@ -22,6 +22,16 @@ class Home extends CI_Controller {
 		 	die();
 		}
 
+
+		if($this->session->userdata('lang')=='turkish')
+		{
+			$this->lang->load("admin/home","turkish");
+		}
+		else
+		{
+			$this->lang->load("admin/home","english");
+		}
+
 		$this->load->helper('alert_helper');
 
 		$this->load->model("crud_model");
@@ -52,10 +62,5 @@ class Home extends CI_Controller {
 
 	}
 
-	public function exit()
-	{
-		session_destroy();
-		redirect(base_url('login/index/exit'));
 
-	}
 }

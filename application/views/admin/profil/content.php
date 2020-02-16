@@ -28,7 +28,7 @@ $this->load->view("admin/public/contentheader");
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img style="width: 200px;height: 200px;" class="img-responsive avatar-view" src="<?= $url.$user->image ?>" alt="Avatar" title="Change the avatar">
+                          <img style="width: 200px;height: 200px;" class="img-responsive avatar-view" src="<?= $url.$user->image ?>" alt="profil" title="Change the avatar">
                         </div>
                       </div>
                       <h3><?= $user->first_name.' '.$user->last_name ?></h3>
@@ -104,6 +104,7 @@ $this->load->view("admin/public/contentheader");
                           <input value="<?= $user->address ?>" class="form-control" type="text" name="address">
                         </div>
                       </div>
+
                       <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align"><?= $this->lang->line('user_picture') ?>
                         </label>
@@ -111,6 +112,22 @@ $this->load->view("admin/public/contentheader");
                           <input name="image" class="date-picker form-control"  type="file">
                         </div>
                       </div>
+
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align"><?= $this->lang->line('language') ?>
+                        </label>
+                         <div class="col-md-6 col-sm-6 ">
+                            <select name="language" class="form-control">
+                              <option value="english"
+                              <?=  $user->language == 'english'?'selected':'' ?>>
+                                <?=  $this->lang->line("english") ?>
+                              </option>
+                              <option value="turkish"
+                              <?=  $user->language == 'turkish'?'selected':'' ?> ><?=  $this->lang->line("turkish") ?></option>
+                              
+                            </select>
+                          </div>
+                        </div>
                     
                       <div class="ln_solid"></div>
                       <div class="item form-group">

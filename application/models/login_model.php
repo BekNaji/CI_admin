@@ -31,6 +31,7 @@ class Login_model extends CI_Model {
 				// here we defined user session 
 				$this->session->set_userdata("email",$query->row()->email);
 				$this->session->set_userdata("id",$query->row()->id);
+				$this->session->set_userdata("lang",$query->row()->language);
 				
 				// if cookei key isset we will set cookie session
 				if($data['cookie_key'] != "")

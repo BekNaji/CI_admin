@@ -22,13 +22,22 @@ class Profil extends CI_Controller {
 		 	die();
 		}
 		
-		//$this->lang->load('admin/form', 'english');
-
+		if($this->session->userdata('lang')=='turkish')
+		{
+			$this->lang->load("admin/home","turkish");
+		}
+		else
+		{
+			$this->lang->load("admin/home","english");
+		}
 		
 		$this->load->helper('alert_helper');
 		$this->load->model("crud_model");
 		// we will use this parser model
 		$this->load->library('parser');
+
+		//$this->lang->load('admin/form', 'english');
+
 	}
 
 	// this is home page of admin panel
@@ -42,7 +51,7 @@ class Profil extends CI_Controller {
 		}
 
 		$data = new stdClass();
-		$data->alert = alert($this->uri->segment(4));
+		$data->alert = $this->alert_model->alert($this->uri->segment(4));
 		$data->company  = $this->crud_model->get_data($this->company);
 		$data->url = base_url();
 		$id['id']  = $this->session->userdata('id');
@@ -95,11 +104,13 @@ class Profil extends CI_Controller {
 		$data['birthday']  = $this->input->post('birthday');
 		$data['address']    = $this->input->post('address');
 		$data['website']    = $this->input->post('website');
+		$data['language']    = $this->input->post('language');
 		
 
 		// here we checked update
 		if($this->crud_model->update($this->user,$data,$id))
 		{
+			$this->session->set_userdata('lang',$this->input->post('language'));
 			redirect(base_url('admin/profil/index/updated'));
 		}else
 		{

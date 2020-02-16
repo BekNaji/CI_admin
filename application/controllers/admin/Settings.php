@@ -25,10 +25,17 @@ class Settings extends CI_Controller {
 		}
 		// here we called lang files
 		
-			
+		if($this->session->userdata('lang')=='turkish')
+		{
+			$this->lang->load("admin/home","turkish");
+		}
+		else
+		{
+			$this->lang->load("admin/home","english");
+		}
 		//$this->lang->load('admin/form', 'english');
 		
-		$this->load->model("alert_model");
+		
 		
 		$this->load->helper('alert_helper');
 		$this->load->model("crud_model");

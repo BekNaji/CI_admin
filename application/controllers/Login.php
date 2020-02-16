@@ -43,7 +43,7 @@ class Login extends CI_Controller {
 		$data->logoname = $this->logoname;
 		
 		// here we called login page
-		$this->parser->parse('login',$data);
+		$this->load->view('login',$data);
 	}
 
 
@@ -233,6 +233,13 @@ class Login extends CI_Controller {
 		}
 		
 	
+	}
+
+	public function exit()
+	{
+		session_destroy();
+		redirect(base_url('login/index/exit'));
+
 	}
 
 
