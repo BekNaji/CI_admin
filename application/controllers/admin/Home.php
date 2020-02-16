@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
-	public $logoname = "Your Logo";
-	private $table = "users";
+	private $user = "users";
+	private $company = "settings";
 
 	public function __construct()
 	{
@@ -13,6 +13,8 @@ class Home extends CI_Controller {
 		//we got user login model
 		$this->load->model("user_login");
 
+		
+
 		// here we are controlling user
 		if(!$this->user_login->isLoggin())
 		{
@@ -20,7 +22,9 @@ class Home extends CI_Controller {
 		 	die();
 		}
 
-		
+		$this->load->helper('alert_helper');
+
+		$this->load->model("crud_model");
 		// we will use this parser model
 		$this->load->library('parser');
 	}
@@ -34,16 +38,24 @@ class Home extends CI_Controller {
 		 	redirect(base_url('login'));
 		 	die();
 		}
-
+		
+	
 		$data = new stdClass();
-		$data->logoname = $this->logoname;
-		$data->title = "Home Page";
-		$data->text  = "Hello World";
-		$data->user  = "Bekzod";
-		$data->age   = 22;
+		$data->alert = alert($this->uri->segment(4));
+		$data->company  = $this->crud_model->get_data($this->company);
+		$data->url = base_url();
+		$id['id']  = $this->session->userdata('id');
+		$data->user  = $this->crud_model->get_data_id($this->user,$id);
 
-		$this->parser->parse("admin/home",$data);
+		$this->load->view("admin/home/content",$data);
 
+
+	}
+
+	public function exit()
+	{
+		session_destroy();
+		redirect(base_url('login/index/exit'));
 
 	}
 }

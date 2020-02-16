@@ -1,19 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Settings extends CI_Controller {
+class Profil extends CI_Controller {
 
-	public $logoname = "Your Logo Name";
-	public $user = "users";
-	public $company = "settings";
-
+	
+	private $user = "users";
+	private $company = "settings";
 
 
 
 	public function __construct()
 	{
 		parent::__construct();
-
 		//we got user login model
 		$this->load->model("user_login");
 
@@ -23,22 +21,17 @@ class Settings extends CI_Controller {
 		 	redirect(base_url('login'));
 		 	die();
 		}
-		// here we called lang files
 		
-			
 		//$this->lang->load('admin/form', 'english');
-		
-		$this->load->model("alert_model");
+
 		
 		$this->load->helper('alert_helper');
 		$this->load->model("crud_model");
-
 		// we will use this parser model
 		$this->load->library('parser');
 	}
 
-	
-
+	// this is home page of admin panel
 	public function index()
 	{
 		// here we are controlling user
@@ -48,25 +41,31 @@ class Settings extends CI_Controller {
 		 	die();
 		}
 
-
-
 		$data = new stdClass();
-		$data->alert = $this->alert_model->alert($this->uri->segment(4));
+		$data->alert = alert($this->uri->segment(4));
 		$data->company  = $this->crud_model->get_data($this->company);
 		$data->url = base_url();
 		$id['id']  = $this->session->userdata('id');
 		$data->user  = $this->crud_model->get_data_id($this->user,$id);
 
-
-		$this->load->view("admin/settings/content",$data);
+		$this->load->view("admin/profil/content",$data);
 
 
 	}
 
+	
 	public function update()
 	{
+		// here we are controlling user
+		if(!$this->user_login->isLoggin())
+		{
+		 	redirect(base_url('login'));
+		 	die();
+		}
+		$id['id']			= $this->input->post('id');
+
 		// here we defined some variables to img upload
-	 	$name = rand(1111,2222);
+	 	$name = rand(3333,4444);
     	$config['upload_path']          = "assets/images/admin/";
         $config['allowed_types']        = 'gif|jpg|png';
         $config['file_name']            =  $name;
@@ -78,33 +77,35 @@ class Settings extends CI_Controller {
         $this->load->library('upload', $config);
 
         // this if statmend is checking upload file
-        if ($this->upload->do_upload("picture") != "")
+        if ($this->upload->do_upload("image") != "")
         {
             
             $this->load->model("fileupload_model");
-            $company  = $this->crud_model->get_data($this->company);
-            $d = @unlink($company->logo);
-            $data['logo'] = "assets/images/admin/".$this->upload->data("file_name");
+            $user  = $this->crud_model->get_data_id($this->user,$id);
+            @unlink($user->image);
+            $data['image'] = "assets/images/admin/".$this->upload->data("file_name");
         }
-        
-		
+
 		// we already controlled form validation with javascript  before sending 
 		// thats why we dont use CI form validation
 		// here we defined array with came POST values. we will send this variables to db	
-		$id['id']			= $this->input->post('id');
-		$data['name'] 		= $this->input->post('name');
+		$data['first_name'] = $this->input->post('first_name');
+		$data['last_name']  = $this->input->post('last_name');
+		$data['email']  	= $this->input->post('email');
+		$data['birthday']  = $this->input->post('birthday');
 		$data['address']    = $this->input->post('address');
 		$data['website']    = $this->input->post('website');
-		$data['registration'] = $this->input->post('registration');
-	
+		
+
 		// here we checked update
-		if($this->crud_model->update($this->company,$data,$id))
+		if($this->crud_model->update($this->user,$data,$id))
 		{
-			redirect(base_url('admin/settings/index/updated'));
+			redirect(base_url('admin/profil/index/updated'));
 		}else
 		{
-			redirect(base_url('admin/settings/index/unupdated'));
+			redirect(base_url('admin/profil/index/unupdated'));
 		}
+
 	}
 
 

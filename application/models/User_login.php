@@ -50,6 +50,7 @@ class User_login extends CI_Model {
 			$data['email'] = $this->session->userdata("email");
 			
 			
+			
 			//here we are controlling that isset sessions value from database
 			$query = $this->db->select("*")->where($data)->from($this->table)->get();
 			if($query)

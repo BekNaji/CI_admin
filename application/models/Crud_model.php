@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Main_model extends CI_Model {
+class Crud_model extends CI_Model {
 
 
 	//get all data from list
@@ -11,8 +11,42 @@ class Main_model extends CI_Model {
 
 		if($query->num_rows() > 0){
 
-			return $query;
+			return $query->row();
 
+		}
+	}
+
+	//get all data from list
+	public function get_data_id($table,$id)
+	{
+		if($table !="" and $id != "")
+		{
+			$query = $this->db->where($id)->from($table)->get();
+
+			if($query->num_rows() > 0)
+			{
+
+				return $query->row();
+
+			}
+		}
+	}
+
+	//get all data from list
+	public function update($table,$data,$id)
+	{
+		if($table !="" and $id != "" and $data != "")
+		{
+			
+			$query = $this->db->where($id)->update($table,$data);
+
+			if($query)
+			{
+				return true;
+			}else
+			{
+				return false;
+			}
 		}
 	}
 

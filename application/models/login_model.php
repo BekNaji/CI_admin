@@ -27,8 +27,10 @@ class Login_model extends CI_Model {
 			// if query is true  
 			if($query->num_rows()>0)
 			{
+			
 				// here we defined user session 
-				$this->session->set_userdata("email",$value['email']);
+				$this->session->set_userdata("email",$query->row()->email);
+				$this->session->set_userdata("id",$query->row()->id);
 				
 				// if cookei key isset we will set cookie session
 				if($data['cookie_key'] != "")
