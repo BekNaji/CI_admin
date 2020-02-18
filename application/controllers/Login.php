@@ -235,12 +235,7 @@ class Login extends CI_Controller {
 	
 	}
 
-	public function exit()
-	{
-		session_destroy();
-		redirect(base_url('login/index/exit'));
 
-	}
 
 
 }

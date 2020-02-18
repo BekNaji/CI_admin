@@ -56,6 +56,12 @@ class Alert_model extends CI_Model {
 				$alert 		= 'alert alert-success';
 				$subject	= $this->lang->line("deleted");
 				$text		= '';
+				break;
+
+			case 'undeleted':
+				$alert 		= 'alert alert-success';
+				$subject	= $this->lang->line("undeleted");
+				$text		= '';
 				break;		
 				
 					

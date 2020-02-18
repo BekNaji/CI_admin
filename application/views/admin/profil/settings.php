@@ -22,6 +22,7 @@ $this->load->view("admin/public/contentheader");
                     
                     <div class="clearfix"></div>
                   </div>
+                  
                   <div class="x_content">
                     <div class="col-md-3 col-sm-3  profile_left">
                       <div class="profile_img">

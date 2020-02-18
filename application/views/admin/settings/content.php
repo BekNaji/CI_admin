@@ -27,7 +27,7 @@ $this->load->view("admin/public/contentheader");
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img style="width: 150px; height: 150px;" class="img-responsive avatar-view" src="<?= $url.$company->logo  ?>" alt="Avatar" title="Change the avatar">
+                          <img style="width: 150px; height: 150px;" class="img-responsive avatar-view" src="<?= $url.$company->logo  ?>" alt="Avatar" title="<?= $company->name ?>">
                         </div>
                       </div>
                       <h3><?= $company->name ?></h3>

@@ -19,7 +19,7 @@
                         <span><?= $this->lang->line('settings') ?></span>
                       </a>
                   <a class="dropdown-item"  href="javascript:;"><?= $this->lang->line('help') ?></a>
-                    <a class="dropdown-item"  href="<?= $url ?>login/exit"><i class="fa fa-sign-out pull-right"></i><?= $this->lang->line('exit') ?></a>
+                    <a class="dropdown-item"  href="<?= $url ?>out"><i class="fa fa-sign-out pull-right"></i><?= $this->lang->line('exit') ?></a>
                   </div>
                 </li>
               </ul>

@@ -12,7 +12,7 @@
     <?php }else{  ?>
     <link rel="icon" href="<?= $url  ?>assets/images/admin/default_logo.jpg" type="image/ico" />
     <?php } ?>
-    <title><?= $this->lang->line('generel') ?></title>
+    <title><?= $title ?></title>
 
     <?php $this->load->view("admin/assets/css") ?>
   </head>

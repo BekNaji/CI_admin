@@ -28,22 +28,22 @@ $this->load->view("admin/public/contentheader");
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img style="width: 200px;height: 200px;" class="img-responsive avatar-view" src="<?= $url.$user->image ?>" alt="profil" title="<?= $user->first_name ?>">
+                          <img style="width: 200px;height: 200px;" class="img-responsive avatar-view" src="<?= $url.$edit->image ?>" alt="profil" title="<?= $edit->first_name ?>">
                         </div>
                       </div>
-                      <h3><?= $user->first_name.' '.$user->last_name ?></h3>
+                      <h3><?= $edit->first_name.' '.$edit->last_name ?></h3>
 
-                      <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-map-marker user-profile-icon"></i> <?= $user->address  ?>
+                      <ul class="list-unstyled edit_data">
+                        <li><i class="fa fa-map-marker edit-profile-icon"></i> <?= $edit->address  ?>
                         </li>
 
                         <li>
-                          <i class="fa fa-briefcase user-profile-icon"></i> <?= $user->who ?>
+                          <i class="fa fa-briefcase edit-profile-icon"></i> <?= $edit->who ?>
                         </li>
 
                         <li class="m-top-xs">
-                          <i class="fa fa-external-link user-profile-icon"></i>
-                          <a href="<?= $user->website ?>" target="_blank"><?= $user->website ?></a>
+                          <i class="fa fa-external-link edit-profile-icon"></i>
+                          <a href="<?= $edit->website ?>" target="_blank"><?= $edit->website ?></a>
                         </li>
                       </ul>
 
@@ -58,27 +58,27 @@ $this->load->view("admin/public/contentheader");
                 
                   <div class="x_content">
                     <br />
-                    <form method="post" action="<?= $url ?>admin/profil/update" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
-                      <input type="hidden" name="id" value="<?= $user->id ?>">
+                    <form method="post" action="<?= $url ?>admin/user/update" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                      <input type="hidden" name="id" value="<?= $edit->id ?>">
                       <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name"><?=  $this->lang->line('first_name') ?><span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input value="<?= $user->first_name ?>" type="text" name="first_name" required="required" class="form-control ">
+                          <input value="<?= $edit->first_name ?>" type="text" name="first_name" required="required" class="form-control ">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"><?=  $this->lang->line('last_name') ?><span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input value="<?= $user->last_name ?>" type="text"  name="last_name" required="required" class="form-control">
+                          <input value="<?= $edit->last_name ?>" type="text"  name="last_name" required="required" class="form-control">
                         </div>
                       </div>
                 
                        <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align"><?=  $this->lang->line('email') ?><span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input value="<?= $user->email ?>" required="required" class="form-control" type="text" name="email">
+                          <input value="<?= $edit->email ?>" required="required" class="form-control" type="text" name="email">
                         </div>
                       </div>
 
@@ -86,7 +86,7 @@ $this->load->view("admin/public/contentheader");
                         <label class="col-form-label col-md-3 col-sm-3 label-align"><?=  $this->lang->line('date_of_birth') ?><span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input value="<?= $user->birthday ?>" required="required" data-inputmask="'mask': '99/99/9999'"  name="birthday" class="date-picker form-control" required="required" type="text">
+                          <input value="<?= $edit->birthday ?>" required="required" data-inputmask="'mask': '99/99/9999'"  name="birthday" class="date-picker form-control" required="required" type="text">
                         </div>
                       </div>
                      
@@ -94,36 +94,60 @@ $this->load->view("admin/public/contentheader");
                        <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align"><?=  $this->lang->line('user_website') ?></label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input value="<?= $user->website ?>"  class="form-control" type="text" name="website">
+                          <input value="<?= $edit->website ?>"  class="form-control" type="text" name="website">
                         </div>
                       </div>
 
                        <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align"><?=  $this->lang->line('user_address') ?></label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input value="<?= $user->address ?>" class="form-control" type="text" name="address">
+                          <input value="<?= $edit->address ?>" class="form-control" type="text" name="address">
                         </div>
                       </div>
 
                       <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align"><?= $this->lang->line('user_picture') ?>
+                        <label class="col-form-label col-md-3 col-sm-3 label-align"><?= $this->lang->line('logo_img') ?>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
                           <input name="image" class="date-picker form-control"  type="file">
                         </div>
                       </div>
 
+
                         <div class="item form-group">
                           <label class="col-form-label col-md-3 col-sm-3 label-align"><?= $this->lang->line('language') ?>
                         </label>
+
+
+                         <div class="col-md-6 col-sm-6 ">
+                            <select name="who" class="form-control">
+                              <option value="User"
+                              <?=  $edit->who == 'User'?'selected':'' ?>>
+                                <?=  $this->lang->line("user") ?>
+                              </option>
+                              <option value="Admin"
+                              <?=  $edit->who == 'Admin'?'selected':'' ?> >
+                              <?=  $this->lang->line("admin") ?></option>
+                              
+                            </select>
+                          </div>
+                        </div>
+
+
+
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align"><?= $this->lang->line('language') ?>
+                        </label>
+
+
                          <div class="col-md-6 col-sm-6 ">
                             <select name="language" class="form-control">
                               <option value="english"
-                              <?=  $user->language == 'english'?'selected':'' ?>>
+                              <?=  $edit->language == 'english'?'selected':'' ?>>
                                 <?=  $this->lang->line("english") ?>
                               </option>
                               <option value="turkish"
-                              <?=  $user->language == 'turkish'?'selected':'' ?> ><?=  $this->lang->line("turkish") ?></option>
+                              <?=  $edit->language == 'turkish'?'selected':'' ?> ><?=  $this->lang->line("turkish") ?></option>
                               
                             </select>
                           </div>

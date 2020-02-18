@@ -53,7 +53,10 @@ class Profil extends CI_Controller {
 		$data = new stdClass();
 		$data->alert = $this->alert_model->alert($this->uri->segment(4));
 		$data->company  = $this->crud_model->get_data($this->company);
+
 		$data->url = base_url();
+		$data->title = $this->lang->line("profil");
+
 		$id['id']  = $this->session->userdata('id');
 		$data->user  = $this->crud_model->get_data_id($this->user,$id);
 
@@ -65,18 +68,13 @@ class Profil extends CI_Controller {
 	
 	public function update()
 	{
-		// here we are controlling user
-		if(!$this->user_login->isLoggin())
-		{
-		 	redirect(base_url('login'));
-		 	die();
-		}
+		
 		$id['id']			= $this->input->post('id');
 
 		// here we defined some variables to img upload
 	 	$name = rand(3333,4444);
     	$config['upload_path']          = "assets/images/admin/";
-        $config['allowed_types']        = 'gif|jpg|png';
+        $config['allowed_types']        = '*';
         $config['file_name']            =  $name;
         // $config['max_size']             = 100;
         // $config['max_width']            = 1024;
@@ -89,10 +87,11 @@ class Profil extends CI_Controller {
         if ($this->upload->do_upload("image") != "")
         {
             
-            $this->load->model("fileupload_model");
+            //$this->load->model("fileupload_model");
             $user  = $this->crud_model->get_data_id($this->user,$id);
             @unlink($user->image);
             $data['image'] = "assets/images/admin/".$this->upload->data("file_name");
+            
         }
 
 		// we already controlled form validation with javascript  before sending 
@@ -116,6 +115,13 @@ class Profil extends CI_Controller {
 		{
 			redirect(base_url('admin/profil/index/unupdated'));
 		}
+
+	}
+
+	function test()
+	{
+	
+
 
 	}
 

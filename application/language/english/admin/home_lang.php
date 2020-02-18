@@ -6,6 +6,9 @@ $lang['settings'] = "Settings";
 $lang['profil'] = "Profil";
 $lang['generel'] = "Generel";
 $lang['exit'] = "Log out";
+$lang['user_list'] = "User List";
+$lang['add_user'] = "Add User";
+
 
 
 // buttons
@@ -13,6 +16,8 @@ $lang['update'] = "Upadate";
 $lang['save'] = "Save";
 $lang['on'] = "On";
 $lang['off'] = "Off";
+$lang['edit'] = "Edit";
+$lang['delete'] = "Delete";
 
 
 // 
@@ -41,6 +46,10 @@ $lang['user'] = "User";
 $lang['user_website'] = "Website";
 $lang['user_address'] = "Address";
 $lang['user_picture'] = "Your Picture";
+$lang['process'] = "Process";
+$lang['password'] = "Password";
+
+
 $lang['language'] = "Language";
 $lang['english'] = "English";
 $lang['turkish'] = "Türkçe";
@@ -63,3 +72,4 @@ $lang['unenter'] = "You're Not Authorized! ATTENTION";
 $lang['unenter_text'] = "If you continue to enter the unauthorized page, YOUR LOGIN WILL BE BLOCKED!";
 
 $lang['deleted'] = "Deleted !";
+$lang['undeleted'] = "The data you want to delete is used elsewhere, so it could not be deleted";

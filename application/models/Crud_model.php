@@ -4,6 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Crud_model extends CI_Model {
 
 
+		//get all data from list
+	public function get_datas($table)
+	{
+		$query = $this->db->get($table);
+
+		if($query->num_rows() > 0){
+
+			return $query->result();
+
+		}
+	}
+
 	//get all data from list
 	public function get_data($table)
 	{
@@ -64,9 +76,9 @@ class Crud_model extends CI_Model {
 	}
 
 	//delete data from id
-	public function deleteData($idname,$id,$table)
+	public function deleteData($table,$id)
 	{
-		$query = $this->db->where($idname,$id)->delete($table);
+		$query = $this->db->delete($table,$id);
 		if($query)
 		{
 			return 1;

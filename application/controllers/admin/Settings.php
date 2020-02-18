@@ -60,7 +60,10 @@ class Settings extends CI_Controller {
 		$data = new stdClass();
 		$data->alert = $this->alert_model->alert($this->uri->segment(4));
 		$data->company  = $this->crud_model->get_data($this->company);
+
 		$data->url = base_url();
+		$data->title = $this->lang->line("settings");
+
 		$id['id']  = $this->session->userdata('id');
 		$data->user  = $this->crud_model->get_data_id($this->user,$id);
 

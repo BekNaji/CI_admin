@@ -6,12 +6,16 @@ $lang['profil'] = "Profil";
 $lang['generel'] = "Genel Ayarlar";
 $lang['help'] = "Yardım";
 $lang['exit'] = "Çıkış";
+$lang['user_list'] = "Kullanıcı Listesi";
+$lang['add_user'] = "Kullanıcı Ekle";
 
 // buttons
 $lang['update'] = "Güncelle";
 $lang['save'] = "Kaydet";
 $lang['on'] = "Açık";
 $lang['off'] = "Kapalı";
+$lang['edit'] = "Düzenle";
+$lang['delete'] = "Sil";
 
 $lang['welcome'] = "Hoş geldiniz";
 $lang['english'] = "English";
@@ -44,6 +48,9 @@ $lang['user'] = "Kullanıcı";
 $lang['user_website'] = "Website";
 $lang['user_address'] = "Adres";
 $lang['user_picture'] = "Kullanıcı Resmi";
+$lang['process'] = "İşlemler";
+$lang['root'] = "Yetkı";
+$lang['password'] = "Parola";
 
 
 // alerts
@@ -62,6 +69,8 @@ $lang['unenter'] = "Yetkiniz Yok! DİKKAT";
 $lang['unenter_text'] = "Yetkisiz sayfaya girmeyı devam ederseniz SİSTEME GİRİŞİNİZ ENGELLENCEKTİR!";
 
 $lang['deleted'] = "Silindi !";
+$lang['undeleted'] = "Silmek istenilen veri başka bir yerde kullanılıyor, bundan dolayı silinemedı";
+
 
 
 
