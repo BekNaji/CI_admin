@@ -57,8 +57,15 @@
 							
 							<div class="control-group">
 								<div class="controls row-fluid">
-									<span class="text-error"><?php echo form_error("name"); ?></span>
-									<input value="<?php echo set_value('name'); ?>" name="name" class="span12" type="text" placeholder="Ful Name">
+									<span class="text-error"><?php echo form_error("first_name"); ?></span>
+									<input value="<?php echo set_value('first_name'); ?>" name="first_name" class="span12" type="text" placeholder="First name">
+								</div>
+							</div>
+
+							<div class="control-group">
+								<div class="controls row-fluid">
+									<span class="text-error"><?php echo form_error("last_name"); ?></span>
+									<input value="<?php echo set_value('last_name'); ?>" name="last_name" class="span12" type="text" placeholder="Last name">
 								</div>
 							</div>
 							<div class="control-group">

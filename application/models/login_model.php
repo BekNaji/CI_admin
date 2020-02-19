@@ -19,7 +19,7 @@ class Login_model extends CI_Model {
 		{
 			// here we defined values  to variable
 			$value['email'] = $data['email'];
-			$value['password'] = $data['password'];
+			//$value['password'] = $data['password'];
 
 			// we will get datas from db 
 			$query = $this->db->select("*")->where($value)->from($this->table)->get();
@@ -27,6 +27,12 @@ class Login_model extends CI_Model {
 			// if query is true  
 			if($query->num_rows()>0)
 			{
+
+				$pass = $this->encrypt->decode($query->row()->password);
+				if($data['password'] == $pass)
+				{
+
+				
 			
 				// here we defined user session 
 				$this->session->set_userdata("email",$query->row()->email);
@@ -46,6 +52,8 @@ class Login_model extends CI_Model {
 
 				// redirect admin home page
 				redirect(base_url("admin/home/index/entered"));
+
+				}
 				
 
 			}else

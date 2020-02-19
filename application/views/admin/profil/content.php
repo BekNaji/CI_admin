@@ -82,6 +82,14 @@ $this->load->view("admin/public/contentheader");
                         </div>
                       </div>
 
+
+                       <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align"><?=  $this->lang->line('password') ?><span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 ">
+                          <input value="<?= $this->encrypt->decode($user->password) ?>" required="required" class="form-control" type="password" name="password">
+                        </div>
+                      </div>
+
                         <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align"><?=  $this->lang->line('date_of_birth') ?><span class="required">*</span>
                         </label>

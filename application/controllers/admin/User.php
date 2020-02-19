@@ -112,6 +112,7 @@ class User extends CI_Controller {
 		$data['first_name'] 	= $this->input->post('first_name');
 		$data['last_name']  	= $this->input->post('last_name');
 		$data['email']  		= $this->input->post('email');
+		$data['password']  		= $this->encrypt->encode($this->input->post('password'));
 		$data['birthday']  	    = $this->input->post('birthday');
 		$data['address']    	= $this->input->post('address');
 		$data['website']    	= $this->input->post('website');
