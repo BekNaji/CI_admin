@@ -5,6 +5,8 @@ class User extends CI_Controller {
 
 	private $user = "users";
 	private $company = "settings";
+	private $menu = "menu";
+	
 	public function __construct()
 	{
 		parent::__construct();
@@ -47,6 +49,12 @@ class User extends CI_Controller {
 		$data = new stdClass();
 		$data->url = base_url();
 
+		$top['topid'] = 0;
+		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
+
+		$sub['subid'] = 1;
+		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
+
 		$data->alert = $this->alert_model->alert($this->uri->segment(4));
 		$data->company  = $this->crud_model->get_data($this->company);
 
@@ -72,6 +80,12 @@ class User extends CI_Controller {
 		$data = new stdClass();
 		$data->url = base_url();
 		$data->title = $this->lang->line("add_user");
+
+		$top['topid'] = 0;
+		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
+
+		$sub['subid'] = 1;
+		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
 
 		$data->alert = $this->alert_model->alert($this->uri->segment(4));
 		$data->company  = $this->crud_model->get_data($this->company);
@@ -140,6 +154,12 @@ class User extends CI_Controller {
 		$data->url = base_url();
 		$data->title = $this->lang->line("add_user");
 
+		$top['topid'] = 0;
+		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
+
+		$sub['subid'] = 1;
+		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
+
 		$data->edit = $this->crud_model->get_data_id($this->user,$edit_id);
 
 		$data->alert = $this->alert_model->alert($this->uri->segment(4));
@@ -196,6 +216,10 @@ class User extends CI_Controller {
 		// here we checked update
 		if($this->crud_model->update($this->user,$data,$id))
 		{
+			if($id['id'] == $this->session->userdata('id'))
+			{
+				$this->session->set_userdata('lang',$this->input->post('language'));
+			}
 			
 			redirect(base_url('admin/user/index/updated'));
 		}else

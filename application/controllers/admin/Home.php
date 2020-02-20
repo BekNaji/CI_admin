@@ -5,6 +5,7 @@ class Home extends CI_Controller {
 
 	private $user = "users";
 	private $company = "settings";
+	private $menu = "menu";
 
 
 	public function __construct()
@@ -54,6 +55,15 @@ class Home extends CI_Controller {
 		$data = new stdClass();
 		$data->alert = alert($this->uri->segment(4));
 		$data->company  = $this->crud_model->get_data($this->company);
+
+		$top['topid'] = 0;
+		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
+
+		$sub['subid'] = 1;
+		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
+
+		
+
 
 		$data->url = base_url();
 		$data->title = $this->lang->line("home");

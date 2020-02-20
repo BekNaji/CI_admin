@@ -6,6 +6,7 @@ class Profil extends CI_Controller {
 	
 	private $user = "users";
 	private $company = "settings";
+	private $menu = "menu";
 
 
 
@@ -56,6 +57,12 @@ class Profil extends CI_Controller {
 
 		$data->url = base_url();
 		$data->title = $this->lang->line("profil");
+
+		$top['topid'] = 0;
+		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
+
+		$sub['subid'] = 1;
+		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
 
 		$id['id']  = $this->session->userdata('id');
 		$data->user  = $this->crud_model->get_data_id($this->user,$id);

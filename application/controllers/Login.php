@@ -37,7 +37,7 @@ class Login extends CI_Controller {
 		$data->captcha = $captcha;
 		$data->title   = 'Login';
 		$data->logoname = $this->logoname;
-		echo "1";
+		
 		// here we called login page
 		$this->load->view("login",$data);
 

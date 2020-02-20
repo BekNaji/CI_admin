@@ -19,6 +19,9 @@ $this->load->view("admin/public/contentheader");
 
               <div>
                 <h1>Hellow World</h1>
+                <?php print_r($topmenu); ?>
+                <hr>
+                <?php print_r($submenu) ?>
               </div>
 
             </div>

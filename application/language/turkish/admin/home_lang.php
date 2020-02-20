@@ -51,6 +51,7 @@ $lang['user_picture'] = "Kullanıcı Resmi";
 $lang['process'] = "İşlemler";
 $lang['root'] = "Yetkı";
 $lang['password'] = "Parola";
+$lang['want_delete'] = "Silmek mi istiyorusun?";
 
 
 // alerts

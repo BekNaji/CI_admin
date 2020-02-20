@@ -3,10 +3,54 @@
               <div class= "menu_section">
                 
                 <ul class= "nav side-menu">
-                  <li><a href= "<?=  $url ?>admin/home"><i class= "fa fa-home"></i>
-                    <?= $this->lang->line('home'); ?></a>
+
+                  <?php foreach (@$topmenu as $key => $top) { ?>
+                   
+
+                    <?php if($top->issub == 1){ ?>
+
+                       
+                      <!-- there is sub menu -->
+                      <li>
+                        <a><?= $top->icon ?><?= $this->lang->line($top->name); ?>
+                        <span class= "fa fa-chevron-down"></span>
+                      </a>
+                        <ul class="nav child_menu">
+                      
+                    <?php foreach ($submenu as $key => $sub) {
+                      if($sub->topid == $top->id){ ?>
+
+                       
+                          <li>
+                            <a href= "<?=  $url.$sub->url ?>">
+                              <?= $this->lang->line($sub->name) ?></a>
+                          </li> 
+                      
+                    <?php  } } ?> 
+                    </ul>
+                      </li>
+                    <?php }else{ ?>
+                      <!-- there is top menu -->
+                      <li>
+                      <a href= "<?=  $url.$top->url ?>"> <?= $top->icon ?>
+                      <?= $this->lang->line(@$top->name); ?>
+                      
+                    </a>
                   </li>
-                  <li><a href= "<?=  $url ?>admin/user/index"><i class= "fa fa-list"></i>
+                <?php }} ?>
+
+
+
+
+
+
+
+                <!--   <li><a href= "<?=  $url ?>admin/home"><i class= "fa fa-home"></i>
+                    <?= $this->lang->line('home'); ?></a>
+                  </li> -->
+
+
+                <!--   <li><a href= "<?=  $url ?>admin/user/index"><i class= "fa fa-list"></i>
                     <?= $this->lang->line('user_list'); ?></a>
                   </li>
                   <li><a href= "<?=  $url ?>admin/user/create"><i class= "fa fa-plus"></i>
@@ -21,7 +65,7 @@
                       
                     </ul>
                   
-                  </li>
+                  </li> -->
                  
                 </ul>
               </div>

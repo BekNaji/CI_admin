@@ -51,8 +51,9 @@ $this->load->view("admin/public/contentheader");
                           <td><?= $value->who ?></td>
                           <td><img class="img-responsive" style="width: 50px; height: 50px;" src="<?= $url.$value->image ?>"></td>
                           <td>
-                            <a href="<?= $url ?>admin/user/edit/<?= $value->id ?>" class="btn btn-warning"><?= $this->lang->line('edit') ?></a>
-                            <a href="<?= $url ?>admin/user/delete/<?= $value->id ?>" class="btn btn-danger"><?= $this->lang->line('delete') ?></a>
+                            <a href="<?= $url ?>admin/user/edit/<?= $value->id ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                            <a onclick='return confirm("<?= $this->lang->line('want_delete') ?>")'
+                              href="<?= $url ?>admin/user/delete/<?= $value->id ?>" class="btn btn-danger"><span class="fa fa-trash"></span></a>
 
                           </td>
                         </tr>
@@ -79,3 +80,7 @@ $this->load->view("admin/public/contentheader");
 
 $this->load->view("admin/public/footer");
          ?>
+
+<script type="text/javascript">
+  
+</script>

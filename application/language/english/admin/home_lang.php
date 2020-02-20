@@ -48,6 +48,7 @@ $lang['user_address'] = "Address";
 $lang['user_picture'] = "Your Picture";
 $lang['process'] = "Process";
 $lang['password'] = "Password";
+$lang['want_delete'] = "Do you want to delete?";
 
 
 $lang['language'] = "Language";

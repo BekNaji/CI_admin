@@ -17,13 +17,28 @@ class Crud_model extends CI_Model {
 	}
 
 	//get all data from list
-	public function get_data($table)
+	public function get_data($table,$id = "")
 	{
-		$query = $this->db->get($table);
+		if($id != "")
+		{
+			$query = $this->db->from($table)->where($id)->get();
 
-		if($query->num_rows() > 0){
+			
 
-			return $query->row();
+
+			if($query->num_rows() > 0){
+
+				return $query->result();
+			}
+
+		}else{
+
+			$query = $this->db->get($table);
+
+			if($query->num_rows() > 0){
+
+				return $query->row();
+			}
 
 		}
 	}
