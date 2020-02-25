@@ -1,4 +1,4 @@
-<?php
+<?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profil extends CI_Controller {
@@ -52,8 +52,15 @@ class Profil extends CI_Controller {
 		}
 
 		$data = new stdClass();
+
+		$id['id']  = $this->session->userdata('id');
+		$data->user  = $this->crud_model->get_data_id($this->user,$id);
+
+
 		$data->alert = $this->alert_model->alert($this->uri->segment(4));
-		$data->company  = $this->crud_model->get_data($this->company);
+		
+		$company_id['id'] = $data->user->company_id;
+		$data->company  = $this->crud_model->get_data_id($this->company,$company_id);
 
 		$data->url = base_url();
 		$data->title = $this->lang->line("profil");
@@ -64,8 +71,7 @@ class Profil extends CI_Controller {
 		$sub['subid'] = 1;
 		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
 
-		$id['id']  = $this->session->userdata('id');
-		$data->user  = $this->crud_model->get_data_id($this->user,$id);
+		
 
 		$this->load->view("admin/profil/content",$data);
 

@@ -74,7 +74,7 @@ class Login_model extends CI_Model {
 			$query = $this->db->insert($this->table,$data);
 			if($query)
 			{
-				echo "Kaydiniz Alınmıştır";
+				
 				return true;
 			}else
 			{

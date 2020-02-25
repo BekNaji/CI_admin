@@ -53,8 +53,17 @@ class Home extends CI_Controller {
 		
 	
 		$data = new stdClass();
+
+		$data->url = base_url();
 		$data->alert = alert($this->uri->segment(4));
-		$data->company  = $this->crud_model->get_data($this->company);
+
+		$data->title = $this->lang->line("home");
+		$id['id']  = $this->session->userdata('id');
+		$data->user  = $this->crud_model->get_data_id($this->user,$id);
+
+		$company_id['id'] = $data->user->company_id;
+		$data->company  = $this->crud_model->get_data_id($this->company,$company_id);
+
 
 		$top['topid'] = 0;
 		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
@@ -65,10 +74,7 @@ class Home extends CI_Controller {
 		
 
 
-		$data->url = base_url();
-		$data->title = $this->lang->line("home");
-		$id['id']  = $this->session->userdata('id');
-		$data->user  = $this->crud_model->get_data_id($this->user,$id);
+		
 
 		$this->load->view("admin/home/content",$data);
 

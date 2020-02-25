@@ -45,8 +45,18 @@ class Login extends CI_Controller {
 
 
 	// this is register page
-	public function register($id ='')
+	public function Register($id ='')
 	{
+		$query = $this->db->get('settings');
+		if($query->num_rows() > 0)
+		{
+			$company = $query->row();
+			if($company->registration != 1)
+			{
+				redirect(base_url("login/index/off"));
+				die();
+			}
+		}
 		
 		// here we created captcha for security
 		$vals = cap_code();
@@ -151,6 +161,7 @@ class Login extends CI_Controller {
 	// this is register control page
 		public function registerControl()
 	{
+
 		
 		// here we check which came isset forms
 		$this->load->library('form_validation');
@@ -161,7 +172,7 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 
 		// check email
-		$this->form_validation->set_rules('email', 'Email', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[users.email]');
 
 		// check password
 		$this->form_validation->set_rules('password', 'Password', 'required|trim');
@@ -180,6 +191,11 @@ class Login extends CI_Controller {
 				$data['last_name'] = $this->input->post('last_name');
 				$data['email'] = $this->input->post('email');
 
+				$data['language'] = "english";
+
+				// you can change depends to your company name
+				$data['company_id'] = 1;
+
 				//this is value who will be user. Admin or User
 				$data['who'] = 'User';
 
@@ -190,7 +206,18 @@ class Login extends CI_Controller {
 				$data['created_at'] = date('d/m/Y - H:m:s');
 
 				// here we call register func that we made. model/Login_model
-				$this->login_model->registerUser($data);
+				if($this->login_model->registerUser($data) == true)
+				{
+					// this method is sending verify code to email
+					$this->load->model("sendemail_model");
+					if($this->sendemail_model->sendemail($data['email']))
+					{
+						// if sending is true here we redirect to email verify page
+						redirect(base_url("login/indexverifyEmail/sent"));
+					}
+
+
+				}
 
 
 			}else
@@ -210,7 +237,7 @@ class Login extends CI_Controller {
 			$data['captcha'] = $captcha;
 
 			// load login page and send $data to this page
-			$this->load->view('login/register',$data);
+			$this->load->view('register',$data);
 			}
 
 		}else
@@ -228,12 +255,57 @@ class Login extends CI_Controller {
 			// this varibiles we will use on Login.php
 			$data['form_error'] =  validation_errors();
 			$data['captcha'] = $captcha;
+			$data['title']   = 'Login';
+			$data['logoname'] = $this->logoname;
+
+			$this->load->view('register',$data);
 
 			// load login page and send $data to this page
-			$this->load->view('login/register',$data);
+			//redirect(base_url("login/register"));
 		}
 		
 	
+	}
+
+	//this is showing verify email page
+	public function indexverifyEmail($value = "")
+	{
+		$data['title'] = "Email Verify Page";
+		$data['logoname'] = $this->logoname;
+		if($vlue == "error")
+		{
+			$data['error_code'] = "Code is wrong. Let's try again!";
+		}
+		
+		$this->load->view("verify-email",$data);
+
+	}
+
+	// this method is checking which came verify code
+	public function verifyEmail()
+	{
+
+		$id['email_code'] = $this->input->post("email_code");
+		$this->load->model("crud_model");
+		
+		if($this->crud_model->get_data("users",$id))
+		{
+			$data['email_verified_at'] = date("Y/m/d H:m:s");
+			if($this->crud_model->update("users",$data,$id))
+			redirect(base_url("login/index/emailverified"));
+		}else
+		{
+			redirect(base_url("login/indexverifyEmail/error"));
+		}
+	}
+
+	public function test($value='')
+	{
+		$email = $this->input->post('email');
+
+
+		$this->load->model("sendemail_model");
+		$this->sendemail_model->sendemail($email);
 	}
 
 

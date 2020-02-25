@@ -47,7 +47,17 @@ class User extends CI_Controller {
 		}
 
 		$data = new stdClass();
+		// this is url and alert 
 		$data->url = base_url();
+		$data->alert = $this->alert_model->alert($this->uri->segment(4));
+
+		// here we got user datas
+		$user['id']  = $this->session->userdata('id');
+		$data->user  = $this->crud_model->get_data_id($this->user,$user);
+
+		// here we got company datas
+		$company_id['id'] = $data->user->company_id;
+		$data->company  = $this->crud_model->get_data_id($this->company,$company_id);
 
 		$top['topid'] = 0;
 		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
@@ -55,15 +65,11 @@ class User extends CI_Controller {
 		$sub['subid'] = 1;
 		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
 
-		$data->alert = $this->alert_model->alert($this->uri->segment(4));
-		$data->company  = $this->crud_model->get_data($this->company);
-
+		// here we got users datas
 		$data->title = $this->lang->line("user_list");
-		
 		$data->users  = $this->crud_model->get_datas($this->user);
 
-		$user['id']  = $this->session->userdata('id');
-		$data->user  = $this->crud_model->get_data_id($this->user,$user);
+		
 
 		$this->load->view("admin/user/list",$data);
 	}
@@ -81,6 +87,13 @@ class User extends CI_Controller {
 		$data->url = base_url();
 		$data->title = $this->lang->line("add_user");
 
+
+		$user['id']  = $this->session->userdata('id');
+		$data->user  = $this->crud_model->get_data_id($this->user,$user);
+
+		$company_id['id'] = $data->user->company_id;
+		$data->company  = $this->crud_model->get_data_id($this->company,$company_id);
+
 		$top['topid'] = 0;
 		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
 
@@ -88,11 +101,9 @@ class User extends CI_Controller {
 		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
 
 		$data->alert = $this->alert_model->alert($this->uri->segment(4));
-		$data->company  = $this->crud_model->get_data($this->company);
+		
 		
 
-		$user['id']  = $this->session->userdata('id');
-		$data->user  = $this->crud_model->get_data_id($this->user,$user);
 
 		$this->load->view("admin/user/create",$data);
 	}
