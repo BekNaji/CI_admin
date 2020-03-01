@@ -272,7 +272,8 @@ class Login extends CI_Controller {
 	{
 		$data['title'] = "Email Verify Page";
 		$data['logoname'] = $this->logoname;
-		if($vlue == "error")
+		
+		if($value == "error")
 		{
 			$data['error_code'] = "Code is wrong. Let's try again!";
 		}

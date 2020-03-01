@@ -8,6 +8,11 @@ $lang['generel'] = "Generel";
 $lang['exit'] = "Log out";
 $lang['user_list'] = "User List";
 $lang['add_user'] = "Add User";
+$lang['settings_menu'] = "Settings Menu";
+$lang['authorize'] = "Authorize";
+$lang['department'] = "Department";
+
+
 
 
 
@@ -18,6 +23,8 @@ $lang['on'] = "On";
 $lang['off'] = "Off";
 $lang['edit'] = "Edit";
 $lang['delete'] = "Delete";
+$lang['create'] = "Create";
+$lang['back'] = "Back";
 
 
 // 
@@ -29,6 +36,10 @@ $lang['company_address'] = "Company Address";
 $lang['company_website'] = "Company Website";
 $lang['registration'] = "Can Anyone Register?";
 $lang['logo_img'] = "Logo Picture";
+$lang['department_name'] = "Department Name";
+
+$lang['topmenu'] = "Top Menu";
+$lang['submenu'] = "Sub Menu";
 
 // profil form
 $lang['first_name'] = "First Name";

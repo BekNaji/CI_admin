@@ -8,6 +8,9 @@ $lang['help'] = "Yardım";
 $lang['exit'] = "Çıkış";
 $lang['user_list'] = "Kullanıcı Listesi";
 $lang['add_user'] = "Kullanıcı Ekle";
+$lang['settings_menu'] = "Menu Ayarları";
+$lang['authorize'] = "Yetkilendirme";
+$lang['department'] = "Bölüm";
 
 // buttons
 $lang['update'] = "Güncelle";

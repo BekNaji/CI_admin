@@ -55,7 +55,7 @@ class Home extends CI_Controller {
 		$data = new stdClass();
 
 		$data->url = base_url();
-		$data->alert = alert($this->uri->segment(4));
+		$data->alert = $this->alert_model->alert($this->uri->segment(4));
 
 		$data->title = $this->lang->line("home");
 		$id['id']  = $this->session->userdata('id');
