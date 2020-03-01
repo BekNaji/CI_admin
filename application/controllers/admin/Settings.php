@@ -6,7 +6,7 @@ class Settings extends CI_Controller {
 	public $logoname = "Your Logo Name";
 	public $user = "users";
 	public $company = "settings";
-	private $menu = "menu";
+	
 
 
 
@@ -71,11 +71,7 @@ class Settings extends CI_Controller {
 		$data->url = base_url();
 		$data->title = $this->lang->line("settings");
 
-		$top['topid'] = 0;
-		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
-
-		$sub['subid'] = 1;
-		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
+	
 
 
 

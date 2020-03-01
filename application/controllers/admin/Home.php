@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 
 	private $user = "users";
 	private $company = "settings";
-	private $menu = "menu";
+	
 
 
 	public function __construct()
@@ -64,17 +64,6 @@ class Home extends CI_Controller {
 		$company_id['id'] = $data->user->company_id;
 		$data->company  = $this->crud_model->get_data_id($this->company,$company_id);
 
-
-		$top['topid'] = 0;
-		$data->topmenu  = $this->crud_model->get_data($this->menu,$top);
-
-		$sub['subid'] = 1;
-		$data->submenu  = $this->crud_model->get_data($this->menu,$sub);
-
-		
-
-
-		
 
 		$this->load->view("admin/home/content",$data);
 
